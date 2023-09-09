@@ -1,0 +1,150 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import data from "../../resources/data.json";
+
+const destinations = data.destinations;
+
+const { destination } = Astro.params;
+
+const currentDestination = destinations.find((dest) => {
+  return dest.name.toLowerCase() === destination;
+});
+---
+
+<Layout title="Destination">
+  <main>
+    <h2 class="h5 heading">
+      <span class="muted-number">01</span>Pick your destination
+    </h2>
+
+    <img
+      transition:name="image"
+      transition:animate="slide"
+      class="destination-image"
+      src={`/images/destination/image-${destination}.webp`}
+      alt={destination}
+    />
+
+    <div class="info" transition:animate="slide">
+      <nav transition:animate="fade">
+        {
+          destinations.map((dest) => {
+            return (
+              <a
+                class={destination === dest.name.toLowerCase() ? "active" : ""}
+                href={`/destinations/${dest.name.toLowerCase()}`}
+              >
+                {dest.name}
+              </a>
+            );
+          })
+        }
+      </nav>
+
+      <h1>{destination}</h1>
+      <p>{currentDestination?.description}</p>
+
+      <div class="separation"></div>
+
+      <div class="distance">
+        <h6 class="subheading-2">Avg. Distance</h6>
+        <p class="subheading-1">{currentDestination?.distance}</p>
+      </div>
+
+      <div class="travel-time">
+        <h6 class="subheading-2">Est. Travel time</h6>
+        <p class="subheading-1">{currentDestination?.travel}</p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  body {
+    background: url("/images/destination/background-destination-desktop.jpg")
+      no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "heading heading"
+      "image info";
+
+    gap: 7rem;
+    margin-inline: 10rem;
+  }
+
+  .heading {
+    grid-area: heading;
+  }
+
+  .destination-image {
+    grid-area: image;
+    place-self: center;
+  }
+
+  .info {
+    grid-area: info;
+  }
+
+  .info nav {
+    display: flex;
+    gap: 2rem;
+    height: 3rem;
+  }
+
+  .info nav a {
+    position: relative;
+    padding-block: 1rem;
+    text-transform: uppercase;
+  }
+
+  .info nav .active::before {
+    content: "";
+    position: absolute;
+    background-color: var(--color-fg);
+    height: 0.25rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .info > * {
+    grid-column: span 2;
+  }
+
+  .info .distance {
+    grid-column: 1/2;
+    display: grid;
+  }
+
+  .info .travel-time {
+    grid-column: 2/3;
+    display: grid;
+  }
+
+  .info .subheading-2 {
+    margin: 0;
+    color: var(--color-primary);
+  }
+
+  .separation {
+    height: 1px;
+    width: 100%;
+    background-color: hsla(255, 100%, 100%, 0.2);
+  }
+
+  .muted-number {
+    font-weight: bold;
+    margin-right: 1rem;
+    color: hsla(255, 100%, 100%, 0.4);
+  }
+</style>

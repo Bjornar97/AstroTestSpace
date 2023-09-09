@@ -1,0 +1,87 @@
+:root {
+  --color-bg: hsl(230, 35%, 7%);
+  --color-fg: #fff;
+  --color-primary: hsl(231, 77%, 90%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Barlow", sans-serif;
+  margin: 0;
+  color: var(--color-fg);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Bellefair", serif;
+  color: var(--color-fg);
+  font-weight: 400;
+  margin: 0;
+}
+
+h1 {
+  font-size: 9.4rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 6.25rem;
+}
+
+h3 {
+  font-size: 3.5rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.75rem;
+  font-family: "Barlow Condensed", sans-serif;
+  letter-spacing: 4.75px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.h5 {
+  font-size: 1.75rem;
+  font-family: "Barlow Condensed", sans-serif;
+  letter-spacing: 4.75px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.subheading-1 {
+  font-family: "Bellefair", serif;
+  font-size: 1.75rem;
+}
+
+.subheading-2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 2.35px;
+}
+
+nav {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 2.7px;
+}
+
+a {
+  color: var(--color-fg);
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}

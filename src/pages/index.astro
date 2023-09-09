@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+---
+
+<Layout title="Home">
+  <main>
+    <div class="text">
+      <h5>So, you want to travel to</h5>
+      <h1>Space</h1>
+      <p class="space-text">
+        Let’s face it; if you want to go to space, you might as well genuinely
+        go to outer space and not hover kind of on the edge of it. Well sit
+        back, and relax because we’ll give you a truly out of this world
+        experience!
+      </p>
+    </div>
+
+    <a href="/destinations" class="explore-button" transition:name="image"
+      >Explore</a
+    >
+  </main>
+</Layout>
+
+<style is:global>
+  body {
+    background: url("/images/home/background-home-desktop.jpg") no-repeat center
+      center fixed;
+    background-size: cover;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-content: center;
+    gap: 20rem;
+    margin-inline: 10rem;
+    margin-block: 12rem;
+  }
+
+  main .text {
+    max-width: 50ch;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .space-text {
+    color: var(--color-primary);
+    line-height: 1.75;
+    font-size: 1.125rem;
+  }
+
+  .explore-button {
+    cursor: pointer;
+    color: var(--color-bg);
+    background-color: var(--color-fg);
+    font-family: "Bellefair", sans-serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+
+    width: 274px;
+    height: 274px;
+    border-radius: 100%;
+
+    display: grid;
+    place-content: center;
+    align-self: flex-end;
+    justify-self: flex-end;
+  }
+</style>

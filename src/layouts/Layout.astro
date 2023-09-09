@@ -1,0 +1,107 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import "../css/main.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const firstPath = pathname.split("/")[1] ?? "";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-32x32.png" />
+    <meta name="
+      generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed:wght@400;700&family=Bellefair&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+
+    <ViewTransitions />
+  </head>
+  <body>
+    <header>
+      <img src="/images/shared/logo.svg" alt="Logo" class="logo" />
+      <div class="header-line"></div>
+      <nav class="primary-nav">
+        <a class={firstPath == "" ? "active" : ""} href="/"
+          ><strong>00</strong>Home</a
+        >
+        <a
+          class={firstPath == "destinations" ? "active" : ""}
+          href="/destinations"><strong>01</strong>Destination</a
+        >
+        <a class={firstPath == "crew" ? "active" : ""} href="/crew"
+          ><strong>02</strong>Crew</a
+        >
+        <a class={firstPath == "technology" ? "active" : ""} href="/technology"
+          ><strong>03</strong>Technology</a
+        >
+      </nav>
+    </header>
+    <slot />
+    <style is:global>
+      header {
+        margin-block: 3rem;
+        margin-inline-start: 3rem;
+        display: grid;
+        grid-template-columns: max-content 1fr max-content;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .header-line {
+        width: 100%;
+        height: 1px;
+        background-color: hsla(255, 100%, 100%, 0.2);
+        transform: translateX(50px);
+        z-index: 3;
+        align-self: center;
+      }
+
+      nav.primary-nav {
+        padding-inline-start: 10rem;
+        padding-inline-end: 16rem;
+        background-color: hsla(255, 100%, 100%, 0.1);
+        backdrop-filter: blur(25px);
+
+        display: flex;
+        gap: 3rem;
+      }
+
+      nav.primary-nav a {
+        padding-block: 3rem;
+      }
+
+      nav.primary-nav a {
+        position: relative;
+        display: flex;
+        gap: 0.5rem;
+        text-transform: uppercase;
+      }
+
+      nav.primary-nav a.active::before {
+        content: "";
+        position: absolute;
+        height: 5px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-fg);
+      }
+    </style>
+  </body>
+</html>
